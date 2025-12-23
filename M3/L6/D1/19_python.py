@@ -3,7 +3,7 @@ x = 50
 
 def prueba():
     x = 10
-    print(x)
+    return x
 
-prueba()
-print(x)
+print("Local", prueba())
+print("Global", x)
