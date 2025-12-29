@@ -5,7 +5,7 @@
 class Cuenta:
     def __init__(self, numero, saldo):
         self.numero = numero        # público
-        self._saldo = saldo         # "protegido"
+        self._saldo = saldo         # "protegido" 
         self.__pin = "1234"         # privado (name mangling)
 
     def mostrar_pin_seguro(self):
