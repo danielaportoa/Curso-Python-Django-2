@@ -1,0 +1,16 @@
+[2026-01-15 08:00:01] Sistema iniciado correctamente
+[2026-01-15 08:00:03] Configuración cargada desde config.txt
+[2026-01-15 08:00:05] Conexión a base de datos establecida
+[2026-01-15 08:01:12] Usuario bastian inició sesión desde IP 181.72.33.91
+[2026-01-15 08:02:44] Solicitud de carga de documento recibida
+[2026-01-15 08:03:10] Documento "contrato_enero.pdf" cargado exitosamente
+[2026-01-15 08:05:27] Usuario carla cerró sesión
+[2026-01-15 08:10:01] Tarea programada de limpieza ejecutada
+[2026-01-15 08:15:43] Advertencia: token JWT próximo a expirar
+[2026-01-15 08:20:59] Error de conexión temporal con el servicio externo
+[2026-01-15 08:25:30] Reintento de conexión exitoso
+[2026-01-15 08:30:00] Sistema operativo sin incidencias críticas
+[2026-01-15 08:45:12] Usuario admin realizó cambios de configuración
+[2026-01-15 09:00:00] Proceso de respaldo iniciado
+[2026-01-15 09:10:45] Proceso de respaldo finalizado correctamente
+[2026-01-15 09:30:00] Sistema detenido de forma controlada

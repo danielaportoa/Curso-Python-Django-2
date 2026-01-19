@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juego: Adivina el número</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .game-container {
+      background: #020617;
+      padding: 24px 28px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #1e293b;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #e5e7eb;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px #6366f1;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #4f46e5;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background: #6366f1;
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .message {
+      min-height: 24px;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .attempts {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .hint-low {
+      color: #38bdf8;
+    }
+
+    .hint-high {
+      color: #f97316;
+    }
+
+    .success {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .error {
+      color: #f97373;
+    }
+
+    .small-info {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>🎯 Adivina el número</h1>
+    <p>He pensado un número entre <strong>1 y 100</strong>. ¿Puedes adivinarlo?</p>
+
+    <input
+      type="number"
+      id="guessInput"
+      placeholder="Escribe tu número aquí..."
+      min="1"
+      max="100"
+    />
+
+    <button id="guessButton">Probar número</button>
+    <button id="resetButton">Reiniciar juego</button>
+
+    <div id="message" class="message"></div>
+    <div id="attempts" class="attempts"></div>
+
+    <div class="small-info">
+      Consejo: prueba primero con 50, luego ve subiendo o bajando según la pista 😉
+    </div>
+  </div>
+
+  <script>
+    let numeroSecreto;
+    let intentos;
+
+    function iniciarJuego() {
+      numeroSecreto = Math.floor(Math.random() * 100) + 1; // 1-100
+      intentos = 0;
+      document.getElementById("message").textContent = "";
+      document.getElementById("message").className = "message";
+      document.getElementById("attempts").textContent = "";
+      document.getElementById("guessInput").value = "";
+      document.getElementById("guessInput").focus();
+      console.log("DEBUG (puedes borrar esto): número secreto =", numeroSecreto);
+    }
+
+    function probarNumero() {
+      const input = document.getElementById("guessInput");
+      const messageEl = document.getElementById("message");
+      const attemptsEl = document.getElementById("attempts");
+
+      const valor = input.value.trim();
+
+      // Validar que haya algo y que sea número
+      if (valor === "" || isNaN(valor)) {
+        messageEl.textContent = "⚠️ Ingresa un número válido.";
+        messageEl.className = "message error";
+        return;
+      }
+
+      const intento = Number(valor);
+
+      if (intento < 1 || intento > 100) {
+        messageEl.textContent = "⚠️ Debe ser un número entre 1 y 100.";
+        messageEl.className = "message error";
+        return;
+      }
+
+      intentos++;
+
+      if (intento < numeroSecreto) {
+        messageEl.textContent = "🔻 Muy bajo.";
+        messageEl.className = "message hint-low";
+      } else if (intento > numeroSecreto) {
+        messageEl.textContent = "🔺 Muy alto.";
+        messageEl.className = "message hint-high";
+      } else {
+        messageEl.textContent = `✅ ¡Correcto! El número era ${numeroSecreto}.`;
+        messageEl.className = "message success";
+      }
+
+      attemptsEl.textContent = `Intentos: ${intentos}`;
+      input.select();
+      input.focus();
+    }
+
+    // Eventos
+    document.getElementById("guessButton").addEventListener("click", probarNumero);
+    document.getElementById("resetButton").addEventListener("click", iniciarJuego);
+
+    document
+      .getElementById("guessInput")
+      .addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          probarNumero();
+        }
+      });
+
+    // Iniciar al cargar
+    iniciarJuego();
+  </script>
+</body>
+</html>

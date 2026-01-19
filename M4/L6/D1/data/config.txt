@@ -1,0 +1,59 @@
+# ===============================
+# Configuración general del sistema
+# ===============================
+
+APP_NAME=ServicioDocumentos
+APP_ENV=development
+DEBUG=true
+LOG_LEVEL=INFO
+
+# ===============================
+# Servidor
+# ===============================
+
+HOST=127.0.0.1
+PORT=8000
+TIMEZONE=America/Santiago
+
+# ===============================
+# Base de datos PostgreSQL
+# ===============================
+
+DB_ENGINE=postgresql
+DB_HOST=172.16.1.235
+DB_PORT=4680
+DB_NAME=db_digitus
+DB_USER=postgres
+DB_PASSWORD=D1g1tus_.2024
+DB_SSL=false
+
+# ===============================
+# Seguridad
+# ===============================
+
+JWT_SECRET=super-secret-key-change-this
+JWT_EXPIRES_IN=3600
+ALLOWED_ORIGINS=*
+
+# ===============================
+# Storage (Azure Blob)
+# ===============================
+
+AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=storageaccount;AccountKey=examplekey123;EndpointSuffix=core.windows.net
+AZURE_CONTAINER_NAME=bempresabase
+MAX_UPLOAD_SIZE_MB=100
+
+# ===============================
+# Elasticsearch
+# ===============================
+
+ELASTICSEARCH_URL=http://localhost:9200
+ELASTICSEARCH_INDEX=documents
+
+# ===============================
+# Features
+# ===============================
+
+ENABLE_SWAGGER=true
+ENABLE_SSE_PROGRESS=true
+ENABLE_AUDIT_LOGS=true

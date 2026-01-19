@@ -1,0 +1,6 @@
+Este es un archivo de texto de ejemplo.
+Contiene múltiples líneas con información útil.
+Cada línea representa un registro distinto.
+Este archivo se usa para demostrar el manejo de punteros.
+Python permite mover el cursor de lectura fácilmente.
+Esta es la última línea del archivo.

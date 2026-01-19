@@ -1,0 +1,35 @@
+# Configuración general de la aplicación
+
+app:
+  name: ServicioDocumentos
+  environment: development
+  debug: true
+
+server:
+  host: 127.0.0.1
+  port: 8000
+  timezone: America/Santiago
+
+database:
+  engine: postgresql
+  host: 172.16.1.235
+  port: 4680
+  name: db_digitus
+  user: postgres
+  password: D1g1tus_.2024
+  ssl: false
+
+security:
+  jwt_secret: super-secret-key-change-this
+  jwt_expires_in: 3600
+  allowed_origins: "*"
+
+storage:
+  provider: azure_blob
+  container: bempresabase
+  max_upload_size_mb: 100
+
+features:
+  swagger: true
+  sse_progress: true
+  audit_logs: true
