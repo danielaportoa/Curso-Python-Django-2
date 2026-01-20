@@ -1,0 +1,1 @@
+Ejecucion python -m ecommerce.main
