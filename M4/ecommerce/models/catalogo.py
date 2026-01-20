@@ -9,19 +9,32 @@ class Catalogo:
         self.productos.append(producto)
 
     def eliminar_producto(self, product_id):
-        pass
+        for producto in self.productos:
+            if producto.product_id == product_id:
+                self.productos.remove(producto)
+                print("Producto eliminado correctamente.")
+                return
+        raise ValueError("Producto no encontrado")
 
     def actualizar_producto(self, product_id, updated_info):
-        pass
+        for producto in self.productos:
+            if producto.product_id == product_id:
+                producto.set_info(**updated_info)
+                print("Producto actualizado correctamente.")
+                return
+        raise ValueError("Producto no encontrado")
 
     def buscar_producto(self, search_term):
-        pass
+        resultados = []
+        for producto in self.productos:
+            if search_term.lower() in producto.name.lower():
+                resultados.append(producto)
+        return resultados
 
     def listar_productos(self):
-        boleta = input("Nombre de la boleta: ")
-        with open(f"{boleta}.txt", "w", encoding="utf-8") as f:
-            for producto in self.productos:
-                f.write(f"{producto.product_id}: {producto.name} - ${producto.price} (Stock: {producto.stock})")
-                f.write("=====================================\n")
-                f.write("            BOLETA DE VENTA           \n")
-                f.write("=====================================\n")
+        if not self.productos:
+            print("Catálogo vacío")
+            return
+
+        for producto in self.productos:
+            print(f"{producto.product_id} | {producto.name} | ${producto.price} | Stock: {producto.stock}")
